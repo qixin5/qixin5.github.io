@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>1 | Qi Xin&#39;s Webpage</title>
+    <link>https://www.cc.gatech.edu/~qxin6/publication_types/1/</link>
+      <atom:link href="https://www.cc.gatech.edu/~qxin6/publication_types/1/index.xml" rel="self" type="application/rss+xml" />
+    <description>1</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2021</copyright><lastBuildDate>Tue, 22 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://www.cc.gatech.edu/~qxin6/img/icon-192.png</url>
+      <title>1</title>
+      <link>https://www.cc.gatech.edu/~qxin6/publication_types/1/</link>
+    </image>
+    
+    <item>
+      <title>Subdomain-Based Generality-Aware Debloating</title>
+      <link>https://www.cc.gatech.edu/~qxin6/publication/ase20/</link>
+      <pubDate>Tue, 22 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.cc.gatech.edu/~qxin6/publication/ase20/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>APIMigrator: An API-Usage Migration Tool for Android Apps</title>
+      <link>https://www.cc.gatech.edu/~qxin6/publication/mobilesoft20demo/</link>
+      <pubDate>Fri, 15 May 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.cc.gatech.edu/~qxin6/publication/mobilesoft20demo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Program Debloating via Stochastic Optimization</title>
+      <link>https://www.cc.gatech.edu/~qxin6/publication/icse20nier/</link>
+      <pubDate>Fri, 15 May 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.cc.gatech.edu/~qxin6/publication/icse20nier/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Automated API-Usage Update for Android Apps</title>
+      <link>https://www.cc.gatech.edu/~qxin6/publication/issta19/</link>
+      <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.cc.gatech.edu/~qxin6/publication/issta19/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Better Code Search and Reuse for Better Program Repair</title>
+      <link>https://www.cc.gatech.edu/~qxin6/publication/gi19/</link>
+      <pubDate>Sat, 25 May 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.cc.gatech.edu/~qxin6/publication/gi19/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Identifying Features of Android Apps from Execution Traces</title>
+      <link>https://www.cc.gatech.edu/~qxin6/publication/mobilesoft19/</link>
+      <pubDate>Sat, 25 May 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.cc.gatech.edu/~qxin6/publication/mobilesoft19/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SEEDE: Simultaneous Execution and Editing in a Development Environment</title>
+      <link>https://www.cc.gatech.edu/~qxin6/publication/ase18/</link>
+      <pubDate>Mon, 03 Sep 2018 00:00:00 +0000</pubDate>
+      <guid>https://www.cc.gatech.edu/~qxin6/publication/ase18/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A Demonstration of Simultaneous Execution and Editing in a Development Environment</title>
+      <link>https://www.cc.gatech.edu/~qxin6/publication/ase17demo/</link>
+      <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
+      <guid>https://www.cc.gatech.edu/~qxin6/publication/ase17demo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Leveraging Syntax-Related Code for Automated Program Repair</title>
+      <link>https://www.cc.gatech.edu/~qxin6/publication/ase17/</link>
+      <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
+      <guid>https://www.cc.gatech.edu/~qxin6/publication/ase17/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Identifying Test-Suite-Overfitted Patches through Test Case Generation</title>
+      <link>https://www.cc.gatech.edu/~qxin6/publication/issta17/</link>
+      <pubDate>Mon, 10 Jul 2017 00:00:00 +0000</pubDate>
+      <guid>https://www.cc.gatech.edu/~qxin6/publication/issta17/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A Framework for a Programmer&#39;s Minion</title>
+      <link>https://www.cc.gatech.edu/~qxin6/publication/icse17poster/</link>
+      <pubDate>Sat, 20 May 2017 00:00:00 +0000</pubDate>
+      <guid>https://www.cc.gatech.edu/~qxin6/publication/icse17poster/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Towards Addressing the Patch Overfitting Problem</title>
+      <link>https://www.cc.gatech.edu/~qxin6/publication/icse17docsymp/</link>
+      <pubDate>Sat, 20 May 2017 00:00:00 +0000</pubDate>
+      <guid>https://www.cc.gatech.edu/~qxin6/publication/icse17docsymp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Building Dynamic, Long-Running Systems</title>
+      <link>https://www.cc.gatech.edu/~qxin6/publication/sesos16/</link>
+      <pubDate>Sun, 15 May 2016 00:00:00 +0000</pubDate>
+      <guid>https://www.cc.gatech.edu/~qxin6/publication/sesos16/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

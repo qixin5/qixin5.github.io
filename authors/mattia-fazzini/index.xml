@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mattia Fazzini | Qi Xin&#39;s Webpage</title>
+    <link>https://www.cc.gatech.edu/~qxin6/authors/mattia-fazzini/</link>
+      <atom:link href="https://www.cc.gatech.edu/~qxin6/authors/mattia-fazzini/index.xml" rel="self" type="application/rss+xml" />
+    <description>Mattia Fazzini</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2021</copyright><lastBuildDate>Fri, 15 May 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://www.cc.gatech.edu/~qxin6/img/icon-192.png</url>
+      <title>Mattia Fazzini</title>
+      <link>https://www.cc.gatech.edu/~qxin6/authors/mattia-fazzini/</link>
+    </image>
+    
+    <item>
+      <title>APIMigrator: An API-Usage Migration Tool for Android Apps</title>
+      <link>https://www.cc.gatech.edu/~qxin6/publication/mobilesoft20demo/</link>
+      <pubDate>Fri, 15 May 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.cc.gatech.edu/~qxin6/publication/mobilesoft20demo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Automated API-Usage Update for Android Apps</title>
+      <link>https://www.cc.gatech.edu/~qxin6/publication/issta19/</link>
+      <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.cc.gatech.edu/~qxin6/publication/issta19/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Identifying Features of Android Apps from Execution Traces</title>
+      <link>https://www.cc.gatech.edu/~qxin6/publication/mobilesoft19/</link>
+      <pubDate>Sat, 25 May 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.cc.gatech.edu/~qxin6/publication/mobilesoft19/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

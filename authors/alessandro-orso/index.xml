@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Alessandro Orso | Qi Xin&#39;s Webpage</title>
+    <link>https://www.cc.gatech.edu/~qxin6/authors/alessandro-orso/</link>
+      <atom:link href="https://www.cc.gatech.edu/~qxin6/authors/alessandro-orso/index.xml" rel="self" type="application/rss+xml" />
+    <description>Alessandro Orso</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2019</copyright><lastBuildDate>Mon, 15 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://www.cc.gatech.edu/~qxin6/img/icon-192.png</url>
+      <title>Alessandro Orso</title>
+      <link>https://www.cc.gatech.edu/~qxin6/authors/alessandro-orso/</link>
+    </image>
+    
+    <item>
+      <title>Automated API-Usage Update for Android Apps</title>
+      <link>https://www.cc.gatech.edu/~qxin6/publication/issta19/</link>
+      <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.cc.gatech.edu/~qxin6/publication/issta19/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

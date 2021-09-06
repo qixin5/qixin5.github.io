@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Steven P. Reiss and Qi Xin | Qi Xin&#39;s Webpage</title>
+    <link>https://www.cc.gatech.edu/~qxin6/authors/steven-p.-reiss-and-qi-xin/</link>
+      <atom:link href="https://www.cc.gatech.edu/~qxin6/authors/steven-p.-reiss-and-qi-xin/index.xml" rel="self" type="application/rss+xml" />
+    <description>Steven P. Reiss and Qi Xin</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2021</copyright><lastBuildDate>Mon, 30 Oct 2017 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://www.cc.gatech.edu/~qxin6/img/icon-192.png</url>
+      <title>Steven P. Reiss and Qi Xin</title>
+      <link>https://www.cc.gatech.edu/~qxin6/authors/steven-p.-reiss-and-qi-xin/</link>
+    </image>
+    
+    <item>
+      <title>A Demonstration of Simultaneous Execution and Editing in a Development Environment</title>
+      <link>https://www.cc.gatech.edu/~qxin6/publication/ase17demo/</link>
+      <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
+      <guid>https://www.cc.gatech.edu/~qxin6/publication/ase17demo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A Framework for a Programmer&#39;s Minion</title>
+      <link>https://www.cc.gatech.edu/~qxin6/publication/icse17poster/</link>
+      <pubDate>Sat, 20 May 2017 00:00:00 +0000</pubDate>
+      <guid>https://www.cc.gatech.edu/~qxin6/publication/icse17poster/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Building Dynamic, Long-Running Systems</title>
+      <link>https://www.cc.gatech.edu/~qxin6/publication/sesos16/</link>
+      <pubDate>Sun, 15 May 2016 00:00:00 +0000</pubDate>
+      <guid>https://www.cc.gatech.edu/~qxin6/publication/sesos16/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
