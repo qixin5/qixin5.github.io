@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Qirun Zhang | Qi Xin&#39;s Webpage</title>
-    <link>https://www.cc.gatech.edu/~qxin6/authors/qirun-zhang/</link>
-      <atom:link href="https://www.cc.gatech.edu/~qxin6/authors/qirun-zhang/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://qixin5.github.io/authors/qirun-zhang.html</link>
+      <atom:link href="https://qixin5.github.io/authors/qirun-zhang/index.xml" rel="self" type="application/rss+xml" />
     <description>Qirun Zhang</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2021</copyright><lastBuildDate>Tue, 22 Sep 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.cc.gatech.edu/~qxin6/img/icon-192.png</url>
+      <url>https://qixin5.github.io/img/icon-192.png</url>
       <title>Qirun Zhang</title>
-      <link>https://www.cc.gatech.edu/~qxin6/authors/qirun-zhang/</link>
+      <link>https://qixin5.github.io/authors/qirun-zhang.html</link>
     </image>
     
     <item>
       <title>Subdomain-Based Generality-Aware Debloating</title>
-      <link>https://www.cc.gatech.edu/~qxin6/publication/ase20/</link>
+      <link>https://qixin5.github.io/publication/ase20.html</link>
       <pubDate>Tue, 22 Sep 2020 00:00:00 +0000</pubDate>
-      <guid>https://www.cc.gatech.edu/~qxin6/publication/ase20/</guid>
+      <guid>https://qixin5.github.io/publication/ase20.html</guid>
       <description></description>
     </item>
     
     <item>
       <title>Program Debloating via Stochastic Optimization</title>
-      <link>https://www.cc.gatech.edu/~qxin6/publication/icse20nier/</link>
+      <link>https://qixin5.github.io/publication/icse20nier.html</link>
       <pubDate>Fri, 15 May 2020 00:00:00 +0000</pubDate>
-      <guid>https://www.cc.gatech.edu/~qxin6/publication/icse20nier/</guid>
+      <guid>https://qixin5.github.io/publication/icse20nier.html</guid>
       <description></description>
     </item>
     

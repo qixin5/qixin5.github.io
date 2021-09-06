@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Steven P. Reiss | Qi Xin&#39;s Webpage</title>
-    <link>https://www.cc.gatech.edu/~qxin6/authors/steven-p.-reiss/</link>
-      <atom:link href="https://www.cc.gatech.edu/~qxin6/authors/steven-p.-reiss/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://qixin5.github.io/authors/steven-p.-reiss.html</link>
+      <atom:link href="https://qixin5.github.io/authors/steven-p.-reiss/index.xml" rel="self" type="application/rss+xml" />
     <description>Steven P. Reiss</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2021</copyright><lastBuildDate>Mon, 03 Sep 2018 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.cc.gatech.edu/~qxin6/img/icon-192.png</url>
+      <url>https://qixin5.github.io/img/icon-192.png</url>
       <title>Steven P. Reiss</title>
-      <link>https://www.cc.gatech.edu/~qxin6/authors/steven-p.-reiss/</link>
+      <link>https://qixin5.github.io/authors/steven-p.-reiss.html</link>
     </image>
     
     <item>
       <title>SEEDE: Simultaneous Execution and Editing in a Development Environment</title>
-      <link>https://www.cc.gatech.edu/~qxin6/publication/ase18/</link>
+      <link>https://qixin5.github.io/publication/ase18.html</link>
       <pubDate>Mon, 03 Sep 2018 00:00:00 +0000</pubDate>
-      <guid>https://www.cc.gatech.edu/~qxin6/publication/ase18/</guid>
+      <guid>https://qixin5.github.io/publication/ase18.html</guid>
       <description></description>
     </item>
     
     <item>
       <title>Seeking the User Interface</title>
-      <link>https://www.cc.gatech.edu/~qxin6/publication/asej18/</link>
+      <link>https://qixin5.github.io/publication/asej18.html</link>
       <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
-      <guid>https://www.cc.gatech.edu/~qxin6/publication/asej18/</guid>
+      <guid>https://qixin5.github.io/publication/asej18.html</guid>
       <description></description>
     </item>
     

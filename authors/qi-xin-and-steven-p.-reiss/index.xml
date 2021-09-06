@@ -2,45 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Qi Xin and Steven P. Reiss | Qi Xin&#39;s Webpage</title>
-    <link>https://www.cc.gatech.edu/~qxin6/authors/qi-xin-and-steven-p.-reiss/</link>
-      <atom:link href="https://www.cc.gatech.edu/~qxin6/authors/qi-xin-and-steven-p.-reiss/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://qixin5.github.io/authors/qi-xin-and-steven-p.-reiss.html</link>
+      <atom:link href="https://qixin5.github.io/authors/qi-xin-and-steven-p.-reiss/index.xml" rel="self" type="application/rss+xml" />
     <description>Qi Xin and Steven P. Reiss</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2021</copyright><lastBuildDate>Sat, 25 May 2019 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.cc.gatech.edu/~qxin6/img/icon-192.png</url>
+      <url>https://qixin5.github.io/img/icon-192.png</url>
       <title>Qi Xin and Steven P. Reiss</title>
-      <link>https://www.cc.gatech.edu/~qxin6/authors/qi-xin-and-steven-p.-reiss/</link>
+      <link>https://qixin5.github.io/authors/qi-xin-and-steven-p.-reiss.html</link>
     </image>
     
     <item>
       <title>Better Code Search and Reuse for Better Program Repair</title>
-      <link>https://www.cc.gatech.edu/~qxin6/publication/gi19/</link>
+      <link>https://qixin5.github.io/publication/gi19.html</link>
       <pubDate>Sat, 25 May 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.cc.gatech.edu/~qxin6/publication/gi19/</guid>
+      <guid>https://qixin5.github.io/publication/gi19.html</guid>
       <description></description>
     </item>
     
     <item>
       <title>Leveraging Syntax-Related Code for Automated Program Repair</title>
-      <link>https://www.cc.gatech.edu/~qxin6/publication/ase17/</link>
+      <link>https://qixin5.github.io/publication/ase17.html</link>
       <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.cc.gatech.edu/~qxin6/publication/ase17/</guid>
+      <guid>https://qixin5.github.io/publication/ase17.html</guid>
       <description></description>
     </item>
     
     <item>
       <title>Reviewer</title>
-      <link>https://www.cc.gatech.edu/~qxin6/service/tse20/</link>
+      <link>https://qixin5.github.io/service/tse20.html</link>
       <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.cc.gatech.edu/~qxin6/service/tse20/</guid>
+      <guid>https://qixin5.github.io/service/tse20.html</guid>
       <description></description>
     </item>
     
     <item>
       <title>Identifying Test-Suite-Overfitted Patches through Test Case Generation</title>
-      <link>https://www.cc.gatech.edu/~qxin6/publication/issta17/</link>
+      <link>https://qixin5.github.io/publication/issta17.html</link>
       <pubDate>Mon, 10 Jul 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.cc.gatech.edu/~qxin6/publication/issta17/</guid>
+      <guid>https://qixin5.github.io/publication/issta17.html</guid>
       <description></description>
     </item>
     
