@@ -5,12 +5,20 @@
     <link>https://qixin5.github.io/authors/and-alessandro-orso.html</link>
       <atom:link href="https://qixin5.github.io/authors/and-alessandro-orso/index.xml" rel="self" type="application/rss+xml" />
     <description>and Alessandro Orso</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2021</copyright><lastBuildDate>Tue, 22 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2022</copyright><lastBuildDate>Fri, 08 Apr 2022 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://qixin5.github.io/img/icon-192.png</url>
       <title>and Alessandro Orso</title>
       <link>https://qixin5.github.io/authors/and-alessandro-orso.html</link>
     </image>
+    
+    <item>
+      <title>Automated Test Generation for REST APIs: No Time to Rest Yet</title>
+      <link>https://qixin5.github.io/publication/issta22.html</link>
+      <pubDate>Fri, 08 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://qixin5.github.io/publication/issta22.html</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Subdomain-Based Generality-Aware Debloating</title>
