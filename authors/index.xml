@@ -5,7 +5,7 @@
     <link>https://qixin5.github.io/authors.html</link>
       <atom:link href="https://qixin5.github.io/authors/index.xml" rel="self" type="application/rss+xml" />
     <description>Authors</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2022</copyright><lastBuildDate>Fri, 08 Apr 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2022</copyright><lastBuildDate>Thu, 22 Sep 2022 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://qixin5.github.io/img/icon-192.png</url>
       <title>Authors</title>
@@ -15,8 +15,24 @@
     <item>
       <title>and Alessandro Orso</title>
       <link>https://qixin5.github.io/authors/and-alessandro-orso.html</link>
-      <pubDate>Fri, 08 Apr 2022 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 22 Sep 2022 00:00:00 +0000</pubDate>
       <guid>https://qixin5.github.io/authors/and-alessandro-orso.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Qi Xin</title>
+      <link>https://qixin5.github.io/authors/qi-xin.html</link>
+      <pubDate>Thu, 22 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://qixin5.github.io/authors/qi-xin.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Qirun Zhang</title>
+      <link>https://qixin5.github.io/authors/qirun-zhang.html</link>
+      <pubDate>Thu, 22 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://qixin5.github.io/authors/qirun-zhang.html</guid>
       <description></description>
     </item>
     
@@ -25,14 +41,6 @@
       <link>https://qixin5.github.io/authors/myeongsoo-kim.html</link>
       <pubDate>Fri, 08 Apr 2022 00:00:00 +0000</pubDate>
       <guid>https://qixin5.github.io/authors/myeongsoo-kim.html</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Qi Xin</title>
-      <link>https://qixin5.github.io/authors/qi-xin.html</link>
-      <pubDate>Fri, 08 Apr 2022 00:00:00 +0000</pubDate>
-      <guid>https://qixin5.github.io/authors/qi-xin.html</guid>
       <description></description>
     </item>
     
@@ -49,14 +57,6 @@
       <link>https://qixin5.github.io/authors/steven-p.-reiss-and-qi-xin.html</link>
       <pubDate>Thu, 07 Apr 2022 00:00:00 +0000</pubDate>
       <guid>https://qixin5.github.io/authors/steven-p.-reiss-and-qi-xin.html</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Qirun Zhang</title>
-      <link>https://qixin5.github.io/authors/qirun-zhang.html</link>
-      <pubDate>Tue, 22 Sep 2020 00:00:00 +0000</pubDate>
-      <guid>https://qixin5.github.io/authors/qirun-zhang.html</guid>
       <description></description>
     </item>
     

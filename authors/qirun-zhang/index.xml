@@ -5,12 +5,20 @@
     <link>https://qixin5.github.io/authors/qirun-zhang.html</link>
       <atom:link href="https://qixin5.github.io/authors/qirun-zhang/index.xml" rel="self" type="application/rss+xml" />
     <description>Qirun Zhang</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2022</copyright><lastBuildDate>Tue, 22 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2022</copyright><lastBuildDate>Thu, 22 Sep 2022 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://qixin5.github.io/img/icon-192.png</url>
       <title>Qirun Zhang</title>
       <link>https://qixin5.github.io/authors/qirun-zhang.html</link>
     </image>
+    
+    <item>
+      <title>Studying and Understanding the Tradeoffs Between Generality and Reduction in Software Debloating</title>
+      <link>https://qixin5.github.io/publication/ase22.html</link>
+      <pubDate>Thu, 22 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://qixin5.github.io/publication/ase22.html</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Subdomain-Based Generality-Aware Debloating</title>
