@@ -1,0 +1,900 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+
+<meta charset="utf-8">
+
+
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Presenting results from an arbitrary number of models - Qi Xin</title>
+
+
+
+
+
+
+
+<meta property="og:locale" content="en-US">
+<meta property="og:site_name" content="Qi Xin">
+<meta property="og:title" content="Presenting results from an arbitrary number of models">
+
+
+  <link rel="canonical" href="http://localhost:4000/posts/2023/03/nest-map">
+  <meta property="og:url" content="http://localhost:4000/posts/2023/03/nest-map">
+
+
+
+  <meta property="og:description" content="The combination of tidyr::nest() and purrr:map() can be used toeasily fit the same model to different subsets of a single dataframe.There are manytutorialsavailable to help guide youthrough this process. There are substantially fewer (none I’ve been ableto find) that show you how to use these two functions to fit the samemodel to different features from your dataframe.">
+
+
+
+
+
+  
+
+  
+
+
+
+  <meta property="og:image" content="http://localhost:4000/images/posts/nest-map/fig-1.png">
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2023-03-04T00:00:00-06:00">
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000",
+      "logo": "http://localhost:4000/images/avatar.jpg"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Qi Xin",
+      "url" : "http://localhost:4000",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<meta name="GPTBot" content="noindex,nofollow">
+
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Qi Xin Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+    
+
+<!-- start custom head snippets -->
+
+<link rel="apple-touch-icon" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72.png?v=20201130">
+<link rel="apple-touch-icon" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114.png?v=20201130">
+<link rel="apple-touch-icon" sizes="120x120" href="http://localhost:4000/images/apple-touch-icon-120x120.png?v=20201130">
+<link rel="apple-touch-icon" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144.png?v=20201130">
+<link rel="apple-touch-icon" sizes="152x152" href="http://localhost:4000/images/apple-touch-icon-152x152.png?v=20201130">
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/images/apple-touch-icon-180x180.png?v=20201130">
+<link rel="icon" type="image/png" href="http://localhost:4000/images/favicon-32x32.png?v=20201130" sizes="32x32">
+<link rel="icon" type="image/png" href="http://localhost:4000/images/android-chrome-192x192.png?v=20201130" sizes="192x192">
+<link rel="icon" type="image/png" href="http://localhost:4000/images/favicon-16x16.png?v=20201130" sizes="16x16">
+<link rel="manifest" href="http://localhost:4000/images/manifest.json?v=20201130">
+<link rel="mask-icon" href="http://localhost:4000/images/safari-pinned-tab.svg?v=20201130" color="#000000">
+<link rel="shortcut icon" href="/images/favicon.ico?v=20201130">
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-TileImage" content="http://localhost:4000/images/mstile-150x150.png?v=20201130">
+<meta name="msapplication-config" content="http://localhost:4000/images/browserconfig.xml?v=20201130">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="http://localhost:4000/assets/css/academicons.css"/>
+
+<script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <button><div class="navicon"></div></button>
+        <ul class="visible-links">
+          <li class="masthead__menu-item masthead__menu-item--lg"><a href="http://localhost:4000/">Qi Xin</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/#publication">Publications</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/#service">Service</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/#teaching">Teaching</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/#contact">Contact</a></li>
+          
+        </ul>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  <div class="author__avatar">
+    
+    	<img src="http://localhost:4000/images/avatar.jpg" class="author__avatar" alt="Qi Xin">
+    
+  </div>
+
+  <div class="author__content">
+    <h3 class="author__name">Qi Xin</h3>
+    <p class="author__bio">Associate Professor</p>
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li><i class="fa fa-fw fa-map-marker-alt" aria-hidden="true" style="padding-right: 1.5em;"></i>E304, School of Computer Science</li>
+      
+      
+      
+      
+        <li><a href="mailto:qxin@whu.edu.cn"><i class="fas fa-fw fa-envelope" aria-hidden="true" style="padding-right: 1.5em;"></i>Email</a></li>
+      
+      
+       
+      
+      
+        <li><a rel="me" href="https://qixin@social.sigsoft.org"><i class="fab fa-fw fa-mastodon" aria-hidden="true" style="padding-right: 1.5em;"></i>Mastodon</a></li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+        <li><a href="https://github.com/qixin5"><i class="fab fa-fw fa-github" aria-hidden="true" style="padding-right: 1.5em;"></i>GitHub</a></li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Presenting results from an arbitrary number of models">
+    <meta itemprop="description" content="The combination of tidyr::nest() and purrr:map() can be used toeasily fit the same model to different subsets of a single dataframe.There are manytutorialsavailable to help guide youthrough this process. There are substantially fewer (none I’ve been ableto find) that show you how to use these two functions to fit the samemodel to different features from your dataframe.">
+    <meta itemprop="datePublished" content="March 04, 2023">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Presenting results from an arbitrary number of models
+</h1>
+          
+        
+        
+        
+          <p class="page__date">
+            <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> <time datetime="1900-01-01T00:00:00-06:00">March 04, 2023</time>
+            <span style="float:right;"><i class="fa fa-clock" aria-hidden="true"></i> 
+
+
+  
+	  9 minute read
+	
+</span>
+          </p>
+        
+        
+             
+        
+    
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-align-justify"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#multiple-predictors">Multiple predictors</a><ul><li><a href="#plots">Plots</a></li><li><a href="#tables">Tables</a></li></ul></li><li><a href="#bonus">Bonus</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>The combination of <code class="language-plaintext highlighter-rouge">tidyr::nest()</code> and <code class="language-plaintext highlighter-rouge">purrr:map()</code> can be used to
+easily fit the same model to different subsets of a single dataframe.
+There are <a href="https://tidyr.tidyverse.org/articles/nest.html">many</a>
+<a href="https://www.monicathieu.com/posts/2020-04-08-tidy-multilevel">tutorials</a>
+<a href="https://r4ds.had.co.nz/many-models.html">available</a> to help guide you
+through this process. There are substantially fewer (none I’ve been able
+to find) that show you how to use these two functions to fit the same
+model to different features from your dataframe.</p>
+
+<!--more-->
+
+<p>While the former involves splitting your data into different subsets by
+row, the latter involves cycling through different columns. I recently
+confronted a problem where I had to run many models, including just one
+predictor at a time from large pool of candidate predictors, while also
+including a standard set of control variables in each.<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> Given the
+(apparent) absence of tutorials on fitting the same model to different
+features from a dataframe using these functions, I decided to write up
+the solution I reached in the hope it might be helpful to someone
+else.<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup> Start by loading the following packages:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">broom</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">modelsummary</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">kableExtra</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">nationalparkcolors</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>We’ll start with a recap of the subsetting approach, then build on it to
+cycle through features instead of subsets of the data. This code is
+similar to the <a href="https://tidyr.tidyverse.org/articles/nest.html">official tidyverse
+tutorial</a> above, but
+pipes the output directly to a <code class="language-plaintext highlighter-rouge">ggplot()</code> call to visualize the results.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mtcars</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">nest</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">cyl</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="c1"># split data by cylinders</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">mod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="n">lm</span><span class="p">(</span><span class="n">mpg</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">disp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">wt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">am</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">gear</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.x</span><span class="p">)),</span><span class="w">
+         </span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="n">tidy</span><span class="p">(</span><span class="n">.x</span><span class="p">,</span><span class="w"> </span><span class="n">conf.int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">T</span><span class="p">)))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="c1"># tidy model to get coefs</span><span class="w">
+  </span><span class="n">unnest</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="c1"># unnest to access coefs</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">sig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sign</span><span class="p">(</span><span class="n">conf.low</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nf">sign</span><span class="p">(</span><span class="n">conf.high</span><span class="p">),</span><span class="w"> </span><span class="c1"># p &lt;= .05</span><span class="w">
+         </span><span class="n">cyl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.factor</span><span class="p">(</span><span class="n">cyl</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="c1"># factor for nicer plotting</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">term</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'disp'</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cyl</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">estimate</span><span class="p">,</span><span class="w"> </span><span class="n">ymin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf.low</span><span class="p">,</span><span class="w"> </span><span class="n">ymax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf.high</span><span class="p">,</span><span class="w">
+             </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sig</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_pointrange</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_hline</span><span class="p">(</span><span class="n">yintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'grey60'</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_color_manual</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Statistical significance'</span><span class="p">,</span><span class="w">
+                     </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">str_to_title</span><span class="p">,</span><span class="w">
+                     </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">park_palette</span><span class="p">(</span><span class="s1">'Saguaro'</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Cylinders'</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Coefficient estimate"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'bottom'</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/images/posts/nest-map/fig_obs-1.png" style="display: block; margin: auto;" /></p>
+
+<h1 id="multiple-predictors">Multiple predictors</h1>
+
+<p>The first thing we have to do is create a custom fuction because we now
+need to be able to specify different predictors in different runs of the
+model. The code below is very similar to the code above, except that
+we’re defining the formula in <code class="language-plaintext highlighter-rouge">lm()</code> via the <code class="language-plaintext highlighter-rouge">formula()</code> function, which
+parses a character object that we’ve assembled via <code class="language-plaintext highlighter-rouge">str_c()</code>. The net
+effect of this is to fit a model where the <code class="language-plaintext highlighter-rouge">pred</code> argmument to
+<code class="language-plaintext highlighter-rouge">func_var()</code> is the first predictor. This lets us use an external
+function to supply different values to <code class="language-plaintext highlighter-rouge">pred</code>. Then we use
+<code class="language-plaintext highlighter-rouge">broom::tidy()</code> to create a tidy dataframe of point estimates and
+measures of uncertainty from the model and store them in a variable
+called <code class="language-plaintext highlighter-rouge">out</code>. Finally, <code class="language-plaintext highlighter-rouge">mutate(pred = pred)</code> creates a variable named
+<code class="language-plaintext highlighter-rouge">pred</code> in the output dataframe that records what the predictor used to
+fit the model was. We could retrieve this from the <code class="language-plaintext highlighter-rouge">mod</code> list-column,
+but this is approach is simpler both to extract the predictor
+programtically and to visually inspect the data. We use then
+<code class="language-plaintext highlighter-rouge">purr::map_dfr()</code> to generate a dataframe where each row corresponds to
+a model with with a different predictor.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">func_var</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span><span class="w"> </span><span class="n">dataset</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  
+  </span><span class="n">dataset</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">nest</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">everything</span><span class="p">())</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">mutate</span><span class="p">(</span><span class="n">mod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="n">lm</span><span class="p">(</span><span class="n">formula</span><span class="p">(</span><span class="n">str_c</span><span class="p">(</span><span class="s1">'mpg ~ '</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">pred</span><span class="p">,</span><span class="w"> </span><span class="c1"># substitute pred</span><span class="w">
+                                             </span><span class="s1">' + wt + am + gear'</span><span class="p">)),</span><span class="w">
+                               </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.x</span><span class="p">)),</span><span class="w">
+           </span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="n">tidy</span><span class="p">(</span><span class="n">.x</span><span class="p">,</span><span class="w"> </span><span class="n">conf.int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">T</span><span class="p">)))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">mutate</span><span class="p">(</span><span class="n">pred</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pred</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="nf">return</span><span class="p">()</span><span class="w">
+  
+</span><span class="p">}</span><span class="w">
+
+</span><span class="c1">## predictors of interest</span><span class="w">
+</span><span class="n">preds</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'disp'</span><span class="p">,</span><span class="w"> </span><span class="s1">'hp'</span><span class="p">,</span><span class="w"> </span><span class="s1">'drat'</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">## fit models with different predictors</span><span class="w">
+</span><span class="n">mods_var</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">map_dfr</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">func_var</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">mtcars</span><span class="p">))</span><span class="w">
+
+</span><span class="c1">## inspect</span><span class="w">
+</span><span class="n">mods_var</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## # A tibble: 3 × 4
+##   data               mod    out              pred 
+##   &lt;list&gt;             &lt;list&gt; &lt;list&gt;           &lt;chr&gt;
+## 1 &lt;tibble [32 × 11]&gt; &lt;lm&gt;   &lt;tibble [5 × 7]&gt; disp 
+## 2 &lt;tibble [32 × 11]&gt; &lt;lm&gt;   &lt;tibble [5 × 7]&gt; hp   
+## 3 &lt;tibble [32 × 11]&gt; &lt;lm&gt;   &lt;tibble [5 × 7]&gt; drat
+</code></pre></div></div>
+
+<h2 id="plots">Plots</h2>
+
+<p>You can see our original dataframe that we condensed down into <code class="language-plaintext highlighter-rouge">data</code>
+with <code class="language-plaintext highlighter-rouge">nest()</code>, the model object in <code class="language-plaintext highlighter-rouge">mod</code>, the tidied model output in
+<code class="language-plaintext highlighter-rouge">out</code>, and finally the predictor used to fit the model in <code class="language-plaintext highlighter-rouge">pred</code>. Using
+<code class="language-plaintext highlighter-rouge">unnest()</code>, we can unnest the <code class="language-plaintext highlighter-rouge">out</code> object and get a dataframe we can
+use to plot the main coefficient estimate from each of our three models.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mods_var</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">unnest</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">sig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sign</span><span class="p">(</span><span class="n">conf.low</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nf">sign</span><span class="p">(</span><span class="n">conf.high</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">term</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">preds</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">term</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">estimate</span><span class="p">,</span><span class="w"> </span><span class="n">ymin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf.low</span><span class="p">,</span><span class="w"> </span><span class="n">ymax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf.high</span><span class="p">,</span><span class="w">
+             </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sig</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_pointrange</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_hline</span><span class="p">(</span><span class="n">yintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'grey60'</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_color_manual</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Statistical significance'</span><span class="p">,</span><span class="w">
+                     </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">str_to_title</span><span class="p">,</span><span class="w">
+                     </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">park_palette</span><span class="p">(</span><span class="s1">'Saguaro'</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Predictor'</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Coefficient estimate"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'bottom'</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/images/posts/nest-map/fig_var-1.png" style="display: block; margin: auto;" /></p>
+
+<h2 id="tables">Tables</h2>
+
+<p>Things get slightly more complicated when we want to represent our
+results textually instead of visually. We can use the excellent
+<code class="language-plaintext highlighter-rouge">modelsummary::modelsummary()</code> function to create our table, but we need
+to supply a list of model objects, rather than the unnested dataframe we
+created above to plot the results. We can use the <code class="language-plaintext highlighter-rouge">split()</code> function to
+turn our dataframe into a list, and by using <code class="language-plaintext highlighter-rouge">split(seq(nrow(.)))</code>,
+we’ll create one list item for each row in our dataframe.</p>
+
+<p>Since each list item will be a one row dataframe, we can use <code class="language-plaintext highlighter-rouge">lapply()</code>
+to cycle through the list. The <code class="language-plaintext highlighter-rouge">mod</code> object in each one row dataframe is
+itself a list-column, so we need to index it with <code class="language-plaintext highlighter-rouge">[[1]]</code> to properly
+access the model object itself.<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup> The last step is a call to
+<code class="language-plaintext highlighter-rouge">unname()</code>, which will drop the automatically generated list item names
+of <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">2</code>, and <code class="language-plaintext highlighter-rouge">3</code>, allowing <code class="language-plaintext highlighter-rouge">modelsummary()</code> to use the default names
+for each model column in the output.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tab_coef_map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'disp'</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Displacement'</span><span class="p">,</span><span class="w"> </span><span class="c1"># format coefficient labels</span><span class="w">
+                 </span><span class="s1">'hp'</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Horsepower'</span><span class="p">,</span><span class="w">
+                 </span><span class="s1">'drat'</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Drive ratio'</span><span class="p">,</span><span class="w">
+                 </span><span class="s1">'wt'</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Weight (1000 lbs)'</span><span class="p">,</span><span class="w">
+                 </span><span class="s1">'am'</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Manual'</span><span class="p">,</span><span class="w">
+                 </span><span class="s1">'gear'</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Gears'</span><span class="p">,</span><span class="w">
+                 </span><span class="s1">'(Intercept)'</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'(Intercept)'</span><span class="p">)</span><span class="w">
+
+</span><span class="n">mods_var</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">split</span><span class="p">(</span><span class="n">seq</span><span class="p">(</span><span class="n">nrow</span><span class="p">(</span><span class="n">.</span><span class="p">)))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="c1"># list where each object is a one row dataframe</span><span class="w">
+  </span><span class="n">lapply</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="o">$</span><span class="n">mod</span><span class="p">[[</span><span class="m">1</span><span class="p">]])</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="c1"># extract model from data dataframe</span><span class="w">
+  </span><span class="n">unname</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="c1"># remove names for default names in table</span><span class="w">
+  </span><span class="n">modelsummary</span><span class="p">(</span><span class="n">coef_map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tab_coef_map</span><span class="p">,</span><span class="w"> </span><span class="n">stars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'*'</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">.05</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<iframe src="/files/html/posts/nest-map/tab1.html" onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+&quot;px&quot;;}(this));" style="height:200px;width:100%;border:none;overflow:hidden" allowtransparency="true">
+</iframe>
+
+<h1 id="bonus">Bonus</h1>
+
+<p>Now, let’s combine both approaches. We’re going to be splitting our
+dataframe into three sub-datasets by number of cylinders while <em>also</em>
+fitting the same model three times with <code class="language-plaintext highlighter-rouge">'disp'</code>, <code class="language-plaintext highlighter-rouge">'hp'</code>, and <code class="language-plaintext highlighter-rouge">'drat'</code>
+as predictors. The only changes to <code class="language-plaintext highlighter-rouge">func_var()</code> are to omit <code class="language-plaintext highlighter-rouge">cyl</code> from
+the nesting, and to recode it as a factor to treat it as discrete axis
+labels.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">func_var_obs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span><span class="w"> </span><span class="n">dataset</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  
+  </span><span class="n">dataset</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">nest</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">cyl</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">mutate</span><span class="p">(</span><span class="n">mod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="n">lm</span><span class="p">(</span><span class="n">formula</span><span class="p">(</span><span class="n">str_c</span><span class="p">(</span><span class="s1">'mpg ~ '</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">pred</span><span class="p">,</span><span class="w">
+                                             </span><span class="s1">' + wt + am + gear'</span><span class="p">)),</span><span class="w">
+                               </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.x</span><span class="p">)),</span><span class="w">
+           </span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="n">tidy</span><span class="p">(</span><span class="n">.x</span><span class="p">,</span><span class="w"> </span><span class="n">conf.int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">T</span><span class="p">)),</span><span class="w">
+           </span><span class="n">cyl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.factor</span><span class="p">(</span><span class="n">cyl</span><span class="p">),</span><span class="w">
+           </span><span class="n">pred</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pred</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">select</span><span class="p">(</span><span class="o">-</span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="nf">return</span><span class="p">()</span><span class="w">
+  
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">preds</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'disp'</span><span class="p">,</span><span class="w"> </span><span class="s1">'hp'</span><span class="p">,</span><span class="w"> </span><span class="s1">'drat'</span><span class="p">)</span><span class="w">
+
+</span><span class="n">mods_var_obs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">map_dfr</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">func_var_obs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">mtcars</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Plotting involves a call to <code class="language-plaintext highlighter-rouge">facet_wrap()</code>, but is otherwise similar.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mods_var_obs</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">unnest</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">sig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sign</span><span class="p">(</span><span class="n">conf.low</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nf">sign</span><span class="p">(</span><span class="n">conf.high</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">term</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">preds</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cyl</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">estimate</span><span class="p">,</span><span class="w"> </span><span class="n">ymin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf.low</span><span class="p">,</span><span class="w"> </span><span class="n">ymax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf.high</span><span class="p">,</span><span class="w">
+             </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sig</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_pointrange</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_hline</span><span class="p">(</span><span class="n">yintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'grey60'</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">pred</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_color_manual</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Statistical significance'</span><span class="p">,</span><span class="w">
+                     </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">str_to_title</span><span class="p">,</span><span class="w">
+                     </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">park_palette</span><span class="p">(</span><span class="s1">'Saguaro'</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Predictor'</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Coefficient estimate"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'bottom'</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="/images/posts/nest-map/fig-1.png" style="display: block; margin: auto;" /></p>
+
+<p>Creating tables is more complex. Here we have to cycle through each
+predictor with a call to <code class="language-plaintext highlighter-rouge">map()</code>, filter the output to only contain
+results from models using that predictor, then split the dataframe by
+cylinders instead of into separate rows. Note the use of
+<code class="language-plaintext highlighter-rouge">unname(preds_name[x])</code> to retrieve full english predictor names to
+create more useful table titles. We’ll also be using <code class="language-plaintext highlighter-rouge">tab_coef_map</code> from
+above to get more informative row labels in our tables. Running the code
+below generates the following tables:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## named vector for full english predictor names</span><span class="w">
+</span><span class="n">preds_name</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'displacement'</span><span class="p">,</span><span class="w"> </span><span class="s1">'horsepower'</span><span class="p">,</span><span class="w"> </span><span class="s1">'drive ratio'</span><span class="p">)</span><span class="w">
+</span><span class="nf">names</span><span class="p">(</span><span class="n">preds_name</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">preds</span><span class="w">
+
+</span><span class="n">map</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">mods_var_obs</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+      </span><span class="n">filter</span><span class="p">(</span><span class="n">pred</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="c1"># subset to models using predictor x</span><span class="w">
+      </span><span class="n">select</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span><span class="w"> </span><span class="n">cyl</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="c1"># drop tidied model</span><span class="w">
+      </span><span class="n">split</span><span class="p">(</span><span class="n">.</span><span class="o">$</span><span class="n">cyl</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="c1"># split by number of cylinders in engine</span><span class="w">
+      </span><span class="n">lapply</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="n">y</span><span class="o">$</span><span class="n">mod</span><span class="p">[[</span><span class="m">1</span><span class="p">]])</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="c1"># only one item in each list</span><span class="w">
+      </span><span class="n">modelsummary</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">str_c</span><span class="p">(</span><span class="s1">'Predictor: '</span><span class="p">,</span><span class="w">
+                                 </span><span class="n">unname</span><span class="p">(</span><span class="n">preds_name</span><span class="p">[</span><span class="n">x</span><span class="p">]),</span><span class="w"> </span><span class="c1"># formatted name</span><span class="w">
+                   </span><span class="n">coef_map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tab_coef_map</span><span class="p">,</span><span class="w">
+                   </span><span class="n">stars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'*'</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">.05</span><span class="p">),</span><span class="w">
+                   </span><span class="n">escape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">F</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+      </span><span class="n">add_header_above</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s1">' '</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s1">'Cylinders'</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">walk</span><span class="p">(</span><span class="n">print</span><span class="p">)</span><span class="w"> </span><span class="c1"># invisibly return input to avoid [[1]] in output</span><span class="w">
+</span></code></pre></div></div>
+
+<iframe src="/files/html/posts/nest-map/tab_disp.html" onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+&quot;px&quot;;}(this));" style="height:200px;width:100%;border:none;overflow:hidden" allowtransparency="true">
+</iframe>
+
+<p><br /></p>
+
+<iframe src="/files/html/posts/nest-map/tab_hp.html" onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+&quot;px&quot;;}(this));" style="height:200px;width:100%;border:none;overflow:hidden" allowtransparency="true">
+</iframe>
+
+<p><br /></p>
+
+<iframe src="/files/html/posts/nest-map/tab_drat.html" onload="javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+&quot;px&quot;;}(this));" style="height:200px;width:100%;border:none;overflow:hidden" allowtransparency="true">
+</iframe>
+
+<p>We’ve got one table for each predictor we considered, and each one is
+split into three models for cars with four, six, and eight cylinder
+engines. This is a bit overkill for this example, but it’s all you have
+to do to scale this framework up to hundreds of potential predictors is
+put more items in <code class="language-plaintext highlighter-rouge">preds</code>.</p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>Yes, I know this is a perfect situation to use LASSO. Sometimes
+people (reviewers) want certain models run, and you just have to run
+them. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p>There’s a very real chance that someone else is me in six months. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p>Things get a lot more complicated if your <code class="language-plaintext highlighter-rouge">split()</code> call produces
+a list of dataframes that aren’t one row each, so make sure that’s
+what you’re getting before you proceed. <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/tags/#data-science" class="page__taxonomy-item" rel="tag">data-science</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#tidyverse" class="page__taxonomy-item" rel="tag">tidyverse</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/#visualization" class="page__taxonomy-item" rel="tag">visualization</a>
+    
+    </span>
+  </p>
+
+
+
+
+      </footer>
+
+      
+
+<section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+  
+  <a href="https://tootpick.org/#text=http://localhost:4000/posts/2023/03/nest-map" class="btn btn--mastodon" title="Share on Mastodon"><i class="fab fa-fw fa-mastodon" aria-hidden="true"></i><span> Mastodon</span></a>
+
+  <a href="https://twitter.com/intent/tweet?text=http://localhost:4000/posts/2023/03/nest-map" class="btn btn--twitter" title="Share on Twitter"><i class="fab fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/posts/2023/03/nest-map" class="btn btn--facebook" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/posts/2023/03/nest-map" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+      
+
+
+  <nav class="pagination">
+    
+      <a href="http://localhost:4000/posts/2022/07/insufficient-data" class="pagination--pager" title="There is as Yet Insufficient Data for a Meaningful Answer
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      
+        <h4 class="page__related-title">You May Also Enjoy</h4>
+      
+      <div class="grid__wrapper">
+        
+        
+        
+        
+        
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+            
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2022/07/insufficient-data" rel="permalink">There is as Yet Insufficient Data for a Meaningful Answer
+</a>
+      
+    </h2>
+    
+    
+    
+
+    
+      <p class="page__date"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> <time datetime="2022-07-05T00:00:00-05:00">July 05, 2022</time></p>
+    
+    
+    
+    <p class="archive__item-excerpt" itemprop="description"><p>Since taking a job as a data scientist three months ago, I’ve spoken with multiple political science PhD students who are interested in potentially making the same transition. This post synthesizes what I’ve said in those conversations with what I’ve learned in my first three months on the job, and I hope it will be helpful to anyone in the same position I was six months ago.</p>
+
+</p>
+    
+    
+  </article>
+</div>
+
+            
+            
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+            
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2022/03/so-it-goes" rel="permalink">So it goes
+</a>
+      
+    </h2>
+    
+    
+    
+
+    
+      <p class="page__date"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> <time datetime="2022-03-31T00:00:00-05:00">March 31, 2022</time></p>
+    
+    
+    
+    <p class="archive__item-excerpt" itemprop="description"><p>When I was applying to graduate school and asking for letters of
+recommendation from my undergrad professors, one of them told me to give
+academia three years, and that if I hadn’t found a permanent position by
+then, to find another career. It’s been three years, and next week I
+start a new job as a data scientist. I read a fair bit of <a href="https://blogs.lse.ac.uk/impactofsocialsciences/2021/08/18/reading-academic-quit-lit-how-and-why-precarious-scholars-leave-academia">quit
+lit</a>
+in my first couple years of grad school and always told myself that if I
+went that same route, I would never pen any of my own…</p>
+
+</p>
+    
+    
+  </article>
+</div>
+
+            
+            
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+          
+        
+      
+          
+          
+      
+          
+          
+          
+            
+
+
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/posts/2021/05/geom-sf-facet" rel="permalink">Faceted maps in R
+</a>
+      
+    </h2>
+    
+    
+    
+
+    
+      <p class="page__date"><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> <time datetime="2021-05-19T00:00:00-05:00">May 19, 2021</time></p>
+    
+    
+    
+    <p class="archive__item-excerpt" itemprop="description"><p>I recently needed to create a choropleth of a few different countries
+for a project on targeting of UN peacekeepers by non-state armed actors
+I’m working on. A
+<a href="https://en.wikipedia.org/wiki/Choropleth_map">choropleth</a> is a type of
+thematic map where data are aggregated up from smaller areas (or
+discrete points) to larger ones and then visualized using different
+colors to represent different numeric values.</p>
+
+</p>
+    
+    
+  </article>
+</div>
+
+            
+            
+              
+        
+        
+        
+        
+          
+      </div>
+    </div>
+  
+</div>
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<a href="/sitemap/">Sitemap</a>
+<!-- end custom footer snippets -->
+
+        
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://fosstodon.org/@jayrobw"><i class="fab fa-fw fa-mastodon" aria-hidden="true"></i> Mastodon</a></li>
+    
+    
+    
+    
+      <li><a href="http://github.com/qixin5"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    <li><a href="http://localhost:4000/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Qi Xin. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>, a fork of <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    <script src="http://localhost:4000/assets/js/main.min.js"></script>
+
+
+
+
+  <script data-goatcounter="https://jayrobwilliams.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+
