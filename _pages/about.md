@@ -40,7 +40,7 @@ Publication
 
 * **Automated Test Generation for REST APIs: No Time to Rest Yet**<br>Myeongsoo Kim, Qi Xin, Saurabh Sinha, and Alessandro Orso<br>Proceedings of the ACM SIGSOFT International Symposium on Software Testing and Analysis (ISSTA), 2022. [pdf](../files/pdf/research/issta22automated.pdf)
 
-* **Subdomain-Based Generality-Aware Debloating**<br>Qi Xin, Myeongsoo Kim, Qirun Zhang, Alessandro Orso<br>Proceedings of the IEEE/ACM International Conference on Automated Software Engineering (ASE), 2020. [pdf](../files/pdf/research/ase20subdomain.pdf)
+* **Subdomain-Based Generality-Aware Debloating**<br>Qi Xin, Myeongsoo Kim, Qirun Zhang, and Alessandro Orso<br>Proceedings of the IEEE/ACM International Conference on Automated Software Engineering (ASE), 2020. [pdf](../files/pdf/research/ase20subdomain.pdf)
 
 * **APIMigrator: an API-usage migration tool for Android apps**<br>Mattia Fazzini, Qi Xin, and Alessandro Orso<br>Proceedings of the IEEE/ACM International Conference on Mobile Software Engineering and Systems, Demo Track (MobileSoft-Demo), 2020. [pdf](../files/pdf/research/mobilesoft20apimigrator.pdf)
 
