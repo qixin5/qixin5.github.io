@@ -26,6 +26,8 @@ Publication
 
 * **HedgeCode: A Multi-Task Hedging Contrastive Learning Framework for Code Search**<br>Gong Chen, Xiaoyuan Xie, Daniel Tang, Qi Xin, and Wenjie Liu<br>Proceedings of the IEEE/ACM International Conference on Software Engineering (ICSE), 2025 (to appear). [pdf](./)
 
+* **ROSE: An IDE-Based Interactive Repair Framework for Debugging**<br>Steven P. Reiss, Xuan Wei, Jiahao Yuan, and Qi Xin<br>ACM Transactions on Software Engineering and Methodology (TOSEM), 2024 (to appear). [pdf](./)
+
 * **Detecting, Creating, Repairing, and Understanding Indivisible Multi-Hunk Bugs**<br>Qi Xin, Haojun Wu, Jinran Tang, Xinyu Liu, Steven P. Reiss, and Jifeng Xuan<br>Proceedings of the ACM on Software Engineering, Volume 1, Issue FSE (FSE), 2024. [pdf](../files/pdf/research/fse24detecting.pdf)
 
 * **Do Not Neglect What's on Your Hands: Localizing Software Faults with Exception Trigger Stream**<br>Xihao Zhang, Yi Song, Xiaoyuan Xie, Qi Xin, and Chenliang Xing<br>Proceedings of the IEEE/ACM International Conference on Automated Software Engineering (ASE), 2024 (to appear). [pdf](./)
