@@ -30,7 +30,7 @@ Publication
 
 * **Detecting, Creating, Repairing, and Understanding Indivisible Multi-Hunk Bugs**<br>Qi Xin, Haojun Wu, Jinran Tang, Xinyu Liu, Steven P. Reiss, and Jifeng Xuan<br>Proceedings of the ACM on Software Engineering, Volume 1, Issue FSE (FSE), 2024. [pdf](../files/pdf/research/fse24detecting.pdf)
 
-* **Do Not Neglect What's on Your Hands: Localizing Software Faults with Exception Trigger Stream (ACM SIGSOFT Distinguished Paper Award)**<br>Xihao Zhang, Yi Song, Xiaoyuan Xie, Qi Xin, and Chenliang Xing<br>Proceedings of the IEEE/ACM International Conference on Automated Software Engineering (ASE), 2024. [pdf](../files/pdf/research/ase24localizing.pdf)
+* **Do Not Neglect What's on Your Hands: Localizing Software Faults with Exception Trigger Stream** <span style="color:red">(ACM SIGSOFT Distinguished Paper Award)</span><br>Xihao Zhang, Yi Song, Xiaoyuan Xie, Qi Xin, and Chenliang Xing<br>Proceedings of the IEEE/ACM International Conference on Automated Software Engineering (ASE), 2024. [pdf](../files/pdf/research/ase24localizing.pdf)
 
 * **Towards Practical and Useful Automated Program Repair for Debugging**<br>Qi Xin, Haojun Wu, Steven P. Reiss, and Jifeng Xuan<br>2030 Software Engineering Workshop (SE2030), 2024. [pdf](../files/pdf/research/se2030towards.pdf)
 
