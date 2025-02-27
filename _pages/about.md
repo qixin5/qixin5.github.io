@@ -24,6 +24,10 @@ Publication
 
 <!--###### **Detecting, Creating, Repairing, and Understanding Indivisible Multi-Hunk Bugs**-->
 
+* **Studying and Understanding the Effectiveness and Failures of Conversational LLM-Based Repair**<br>Aolin Chen, Haojun Wu, Qi Xin, Steven P. Reiss, and Jifeng Xuan<br>Proceedings of the IEEE/ACM International Workshop on Automated Program Repair (APR), 2025 (to appear). [pdf](../files/pdf/research/apr25studying.pdf)
+
+* **KotSuite: Unit Test Generation for Kotlin Programs in Android Applications**<br>Feng Yang, Qi Xin, Zhilei Ren, and Jifeng Xuan<br>Proceedings of the IEEE/ACM International Conference on Program Comprehension (ICPC), 2025 (to appear). [pdf](../files/pdf/research/icpc25kotsuite.pdf)
+
 * **HedgeCode: A Multi-Task Hedging Contrastive Learning Framework for Code Search**<br>Gong Chen, Xiaoyuan Xie, Daniel Tang, Qi Xin, and Wenjie Liu<br>Proceedings of the IEEE/ACM International Conference on Software Engineering (ICSE), 2025 (to appear). [pdf](./)
 
 * **ROSE: An IDE-Based Interactive Repair Framework for Debugging**<br>Steven P. Reiss, Xuan Wei, Jiahao Yuan, and Qi Xin<br>ACM Transactions on Software Engineering and Methodology (TOSEM), 2024 (to appear). [pdf](../files/pdf/research/tosem24rose.pdf)
@@ -80,7 +84,7 @@ Service
   * Guest editor: Automated Software Engineering (AUSE) Special Issue: Effective Program Analysis and Testing for Modern Software Development [link](https://link.springer.com/collections/aajebfdefd)
 
 * **Program Committees**
-  * PC member: [APR'25](https://program-repair.org/workshop-2025/), [ISSTA'25](https://conf.researchr.org/home/issta-2025), [ISSTA'24](https://conf.researchr.org/home/issta-2024), [FSE'24](https://conf.researchr.org/home/fse-2024), [ICSE'24](https://conf.researchr.org/home/icse-2024), [ASE'24](https://conf.researchr.org/home/ase-2024), [PRDC'23](https://prdc.dependability.org/PRDC2023/), [Internetware'23](https://conf.researchr.org/home/internetware-2023), [MobileSoft'21](https://conf.researchr.org/home/mobilesoft-2021)
+  * PC member: [ASE'25](https://conf.researchr.org/home/ase-2025), [APR'25](https://program-repair.org/workshop-2025/), [ISSTA'25](https://conf.researchr.org/home/issta-2025), [ISSTA'24](https://conf.researchr.org/home/issta-2024), [FSE'24](https://conf.researchr.org/home/fse-2024), [ICSE'24](https://conf.researchr.org/home/icse-2024), [ASE'24](https://conf.researchr.org/home/ase-2024), [PRDC'23](https://prdc.dependability.org/PRDC2023/), [Internetware'23](https://conf.researchr.org/home/internetware-2023), [MobileSoft'21](https://conf.researchr.org/home/mobilesoft-2021)
   * AE member: [ISSTA'20](https://conf.researchr.org/home/issta-2020)
 
 * **Journal Reviewers**
